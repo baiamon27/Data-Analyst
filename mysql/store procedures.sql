@@ -1,0 +1,36 @@
+-- stored procedures\
+
+select * from employee_salary
+where salary >= 50000;
+
+
+create procedure large_salaries()
+select * from employee_salary
+where salary >= 50000;
+
+call large_salaries();
+
+
+
+delimiter $$
+create procedure large_salaries4()
+begin
+	select * from employee_salary
+	where salary >= 50000;
+	select * from employee_salary
+	where salary >= 10000;
+end $$
+delimiter ;
+
+call large_salaries4();
+
+
+delimiter $$
+create procedure large_salaries5(hurry_param int)
+begin
+	select salary
+    from employee_salary
+    where employee_id = hurry_param;
+end $$
+delimiter ; 
+call large_salaries5(1);
